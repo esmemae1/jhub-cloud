@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify
 import random
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route("/")
+@application.route("/")
 def home():
     return jsonify({"service": "Weather API", "status": "running"})
 
-@app.route("/temperature", methods=["GET"])
+@application.route("/temperature", methods=["GET"])
 def temperature():
     location = request.args.get("location", "unknown")
     temp = random.randint(-10, 40)
@@ -16,7 +16,7 @@ def temperature():
         "temperature_celsius": temp
     })
 
-@app.route("/wind", methods=["GET"])
+@application.route("/wind", methods=["GET"])
 def wind():
     location = request.args.get("location", "unknown")
     speed = random.randint(1, 40)
@@ -27,4 +27,4 @@ def wind():
     })
 
 if __name__ == "__main__":
-    app.run()
+    application.run()
